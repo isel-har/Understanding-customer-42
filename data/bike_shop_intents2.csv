@@ -1,0 +1,100 @@
+text,intent
+hi,Welcome Intent
+hello,Welcome Intent
+hey there,Welcome Intent
+good morning,Welcome Intent
+good afternoon,Welcome Intent
+good evening,Welcome Intent
+hi there,Welcome Intent
+hello shop,Welcome Intent
+hey I need some help,Welcome Intent
+is anyone there,Welcome Intent
+can you help me,Welcome Intent
+I want to buy a bike,Welcome Intent
+I'm looking for a bicycle,Welcome Intent
+greetings,Welcome Intent
+yo,Welcome Intent
+hey buddy,Welcome Intent
+hi shop,Welcome Intent
+hello I have a question,Welcome Intent
+good day,Welcome Intent
+hi I need info about bikes,Welcome Intent
+mountain bike,Bike Types
+road bike,Bike Types
+electric bike,Bike Types
+e-bike options,Bike Types
+do you sell BMX bikes,Bike Types
+gravel bikes available,Bike Types
+kids bikes,Bike Types
+bike for city commuting,Bike Types
+best bike for beginners,Bike Types
+professional racing bike,Bike Types
+carbon fiber bikes,Bike Types
+lightweight bicycles,Bike Types
+foldable bikes,Bike Types
+hybrid bikes,Bike Types
+touring bicycles,Bike Types
+bike for long distance,Bike Types
+what types of bikes do you have,Bike Types
+I need a durable bike,Bike Types
+bike for off-road,Bike Types
+entry level bike,Bike Types
+how much does a bike cost,Cost Estimation
+price of mountain bike,Cost Estimation
+budget bikes under 500,Cost Estimation
+cheap bicycles,Cost Estimation
+expensive bikes price,Cost Estimation
+average bike cost,Cost Estimation
+how much for a good bike,Cost Estimation
+bike price range,Cost Estimation
+what is the cost of e-bike,Cost Estimation
+how much should I spend on a bike,Cost Estimation
+cost of bike accessories,Cost Estimation
+price estimate for repair,Cost Estimation
+how much to fix brakes,Cost Estimation
+bike tune up price,Cost Estimation
+repair cost estimation,Cost Estimation
+cost for new tires,Cost Estimation
+price of helmet,Cost Estimation
+how much is a racing bike,Cost Estimation
+bike maintenance cost,Cost Estimation
+what time do you open,Hours
+what are your hours,Hours
+opening hours,Hours
+closing time,Hours
+are you open today,Hours
+shop working hours,Hours
+when do you close,Hours
+what time do you close today,Hours
+are you open on weekends,Hours
+weekend hours,Hours
+holiday hours,Hours
+are you open now,Hours
+when does the shop open,Hours
+business hours,Hours
+schedule of the shop,Hours
+what time can I visit,Hours
+hours for today,Hours
+are you open tomorrow,Hours
+opening time please,Hours
+when are you available,Hours
+I want to book an appointment,Make Appointment
+schedule a repair,Make Appointment
+book a service,Make Appointment
+make an appointment,Make Appointment
+can I reserve a time,Make Appointment
+appointment for bike repair,Make Appointment
+I need to schedule maintenance,Make Appointment
+book a slot,Make Appointment
+set up an appointment,Make Appointment
+reserve service time,Make Appointment
+can I come tomorrow for repair,Make Appointment
+schedule bike check,Make Appointment
+I want to fix my bike,Make Appointment
+book for tune up,Make Appointment
+appointment request,Make Appointment
+reserve a mechanic,Make Appointment
+schedule service,Make Appointment
+make booking,Make Appointment
+I need an appointment,Make Appointment
+book repair slot,Make Appointment
