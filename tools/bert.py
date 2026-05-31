@@ -1,18 +1,30 @@
-# import torch
-# import math
+import torch
 import torch.nn as nn
+from transformers import BertModel
 
-class BEREmbedding(nn.Module):
-    ...
+class IntentClassifier(nn.Module):
+    def __init__(self, num_classes, hidden_layers=(128, 64),dropout_rate=0.2):
+        super().__init__()
 
-class MultiHeadAttention(nn.Module):
-    ...
+        self.bert = BertModel.from_pretrained(
+            "bert-base-uncased"
+        )
 
-class FeedForward(nn.Module):
-    ...
+        self.classifier = nn.Sequential(
+            nn.Linear(hidden_layers[0], hidden_layers[1]),
+            nn.ReLU(),
+            nn.Dropout(dropout_rate),
+            nn.Linear(hidden_layers[1], num_classes)
+        )
 
-class BERTEncoderLayer(nn.Module):
-    ...
+    def forward(self, input_ids, attention_mask):
+        outputs = self.bert(
+            input_ids=input_ids,
+            attention_mask=attention_mask
+        )
 
-class BERT(nn.Module):
-    ...
+        cls_embedding = outputs.last_hidden_state[:, 0, :]
+
+        logits = self.classifier(cls_embedding)
+
+        return logits
