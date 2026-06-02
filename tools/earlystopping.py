@@ -42,11 +42,8 @@ class EarlyStopping:
 
         with torch.no_grad():
             outputs = model(X_val)
-            print("outputs :", outputs)
             loss = criterion(outputs, y_val)
-
             val_loss = loss.item() / len(y_val)
-            # val_accuracy = accuracy_score(y_true=y_val.numpy(), y_pred=outputs.argmax(dim=1).numpy())
             val_accuracy = (outputs.argmax(dim=1) == y_val).sum().item() / len(y_val)
 
         return val_loss, val_accuracy

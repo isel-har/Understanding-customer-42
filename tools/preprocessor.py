@@ -1,16 +1,15 @@
 import nltk
 
-# nltk.download("averaged_perceptron_tagger_eng")
-# nltk.download("wordnet")
-# nltk.download("punkt_tab")
-# nltk.download("stopwords")
+nltk.download("averaged_perceptron_tagger_eng")
+nltk.download("punkt_tab")
+nltk.download("wordnet")
+nltk.download("stopwords")
 
 
 from transformers import AutoTokenizer
 import contractions
 import string
 import gensim.downloader as api
-
 from nltk.stem     import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus   import stopwords
@@ -102,7 +101,6 @@ class NLProcessor:
         filtered_tokens = []
 
         for tokens in tokens_list:
-            # This list comprehension is fast because cls.stop_words is a set.
             filtered = [word for word in tokens if word not in self.stop_words]
             filtered_tokens.append(filtered)
 

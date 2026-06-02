@@ -2,21 +2,7 @@ import torch.nn as nn
 import torch
 
 class TextCNN(nn.Module):
-    """
-    Multi-scale TextCNN.
- 
-    Key improvements over the original:
-      - Parallel convolution branches with kernel sizes [3, 5, 7] capture
-        short, medium, and longer n-gram patterns simultaneously.
-      - Batch normalisation after each convolution stabilises training and
-        acts as a mild regulariser, letting you reduce dropout slightly.
-      - Global max-pool + global average-pool per branch (instead of a fixed
-        MaxPool1d(2)) removes the hard dependency on seq_len and generally
-        yields better generalisation.
-      - The final feature vector is: num_kernels × out_channels × 2
-        (factor-of-2 comes from concatenating max- and avg-pool outputs).
-    """
- 
+
     def __init__(
         self,
         embed_dim: int,

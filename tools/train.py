@@ -1,4 +1,4 @@
-
+import torch
 
 def train(model, criterion, optimizer, dataloader):
     train_loss = 0
@@ -16,11 +16,12 @@ def train(model, criterion, optimizer, dataloader):
         train_loss += loss.item()
         train_correct += (outputs.argmax(dim=1) == y_batch).sum().item()
 
-    avg_train_loss = train_loss / len(train_loader)
-    train_acc      = train_correct / len(train_loader.dataset)
-    print(f"Epoch [{epoch+1}/20] Loss: {train_loss/len(train_loader):.4f}")
+    avg_train_loss = train_loss / len(dataloader)
+    train_acc      = train_correct / len(dataloader.dataset)
+    return avg_train_loss, train_acc
+    # print(f"Epoch [{epoch+1}/20] Loss: {train_loss/len(train_loader):.4f}")
 
-    print(
-        f"Epoch [{epoch+1}/{num_epochs}] "
-        f"Train Loss: {avg_train_loss:.4f}  Acc: {train_acc:.3f}"
-    )
+    # print(
+    #     f"Epoch [{epoch+1}/{num_epochs}] "
+    #     f"Train Loss: {avg_train_loss:.4f}  Acc: {train_acc:.3f}"
+    # )

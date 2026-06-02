@@ -1,0 +1,295 @@
+RNN
+    "Model Architecture:"
+        RNN(
+  (rnn): RNN(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 32
+    validation accuracy reached : 0.85
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        RNN(
+  (rnn): RNN(300, 128, num_layers=2, batch_first=True, dropout=0.3)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 6
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.3
+    batch size : 16
+    validation accuracy reached : 0.76
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        RNN(
+  (rnn): RNN(300, 128, num_layers=2, batch_first=True, dropout=0.1)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.1
+    batch size : 64
+    validation accuracy reached : 0.82
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        RNN(
+  (rnn): RNN(300, 256, num_layers=2, batch_first=True, dropout=0.1)
+  (fc): Linear(in_features=256, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.1
+    batch size : 32
+    validation accuracy reached : 0.88
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+
+LSTM
+
+
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.5)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.1
+    batch size : 32
+    validation accuracy reached : 0.79
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.1)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.1
+    batch size : 32
+    validation accuracy reached : 0.79
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 32
+    validation accuracy reached : 0.82
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 6
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 32
+    validation accuracy reached : 0.76
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 6
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 32
+    validation accuracy reached : 0.76
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 10
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 32
+    validation accuracy reached : 0.82
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        LSTM(
+  (lstm): LSTM(300, 128, num_layers=2, batch_first=True, dropout=0.2)
+  (fc): Linear(in_features=128, out_features=7, bias=True)
+)
+    ============================================================
+    early stopping patience : 8
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 16
+    validation accuracy reached : 0.94
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+
+CNN
+
+    "Model Architecture:"
+        TextCNN(
+  (branches): ModuleList(
+    (0): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(3,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (1): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(5,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (2): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(7,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=768, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=128, out_features=7, bias=True)
+  )
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 296
+    validation accuracy reached : 0.94
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        TextCNN(
+  (branches): ModuleList(
+    (0): Sequential(
+      (0): Conv1d(300, 256, kernel_size=(3,), stride=(1,), padding=same)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (1): Sequential(
+      (0): Conv1d(300, 256, kernel_size=(5,), stride=(1,), padding=same)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (2): Sequential(
+      (0): Conv1d(300, 256, kernel_size=(7,), stride=(1,), padding=same)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=1536, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=128, out_features=7, bias=True)
+  )
+)
+    ============================================================
+    early stopping patience : 5
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 296
+    validation accuracy reached : 0.94
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
+    "Model Architecture:"
+        TextCNN(
+  (branches): ModuleList(
+    (0): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(3,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (1): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(5,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (2): Sequential(
+      (0): Conv1d(300, 128, kernel_size=(7,), stride=(1,), padding=same)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=768, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=128, out_features=7, bias=True)
+  )
+)
+    ============================================================
+    early stopping patience : 8
+    learning rate : 0.001
+    epochs : 100
+    regularization L2 : 0.0001
+    lr scheduler used
+    dropout rate : 0.2
+    batch size : 296
+    validation accuracy reached : 0.94
+    scheduler factor : 0.5
+    ____________________________________________________________________________________________________
