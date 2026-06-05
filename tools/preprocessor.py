@@ -10,18 +10,20 @@ from nltk.corpus   import stopwords
 from nltk.corpus   import wordnet
 import numpy as np
 import gensim.downloader as api
-# import re
+
+import pkg_resources
+from symspellpy import SymSpell, Verbosity
 
 
-# nltk.download("averaged_perceptron_tagger_eng")
-# nltk.download("punkt_tab")
-# nltk.download("wordnet")
-# nltk.download("stopwords")
+
+nltk.download("averaged_perceptron_tagger_eng")
+nltk.download("punkt_tab")
+nltk.download("wordnet")
+nltk.download("stopwords")
 
 
 class NLProcessor:
-    punct = string.punctuation.replace('-', '')
-    punct_translator = str.maketrans('', '', punct)
+    punct_translator = str.maketrans("", "", string.punctuation)
     digit_translator = str.maketrans("", "", string.digits)
 
     def __init__(
@@ -31,8 +33,8 @@ class NLProcessor:
         lower=True,
         use_clean=True,
         remove_punc=True,
-        sub_word_tokenizer=False,
-        embedder=api.load("fasttext-wiki-news-subwords-300")
+        use_spell=True,
+        embedder=api.load('word2vec-google-news-300')
     ):
         self.use_clean     = use_clean
         self.use_stopwords = use_stopwords
@@ -41,11 +43,17 @@ class NLProcessor:
         self.unfound_words = []
         self.remove_punc   = remove_punc
         self.lower         = lower
+ 
 
         self.stop_words = set(stopwords.words("english")) if use_stopwords else None
         self.normalizer = WordNetLemmatizer() if normalize else None
-        self.sub_word_tokenizer = sub_word_tokenizer
         self.embedder = embedder
+        self.sym_spell =  SymSpell(max_dictionary_edit_distance=2, prefix_length=7) if use_spell else None
+        if self.sym_spell:
+            dictionary_path = pkg_resources.resource_filename(
+                "symspellpy", "frequency_dictionary_en_82_765.txt"
+            )
+            self.sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
 
 
     @staticmethod
@@ -66,6 +74,8 @@ class NLProcessor:
         cleaned_tweets = []
 
         for sentence in sentences:
+  
+
             sentence = contractions.fix(sentence)
             if self.lower:
                 sentence = sentence.lower()
@@ -75,6 +85,9 @@ class NLProcessor:
             sentence = sentence.strip() # remove leading/trailing spaces
             sentence = " ".join(sentence.split()) # remove duplicate spaces
 
+            if len(sentence) == 0:
+              print("empty string!")
+            
             cleaned_tweets.append(sentence)
 
         return cleaned_tweets
@@ -83,14 +96,12 @@ class NLProcessor:
     def tokenization(self, sentences):
         tokens_list = list()
 
-        if self.sub_word_tokenizer:
-            tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-            for sentence in sentences:
-                tokens = tokenizer.tokenize(sentence)
-        else:
-            for text in sentences:
-                tokens = word_tokenize(text)
-                tokens_list.append(tokens)
+        for text in sentences:
+            tokens = word_tokenize(text)
+
+            if len(tokens) == 0:
+              print("empty tokens")
+            tokens_list.append(tokens)
 
         return tokens_list
 
@@ -100,26 +111,47 @@ class NLProcessor:
 
         for tokens in tokens_list:
             filtered = [word for word in tokens if word not in self.stop_words]
-            filtered_tokens.append(filtered)
+
+            if len(filtered) == 0:
+              filtered_tokens.append(tokens)
+            else:
+              filtered_tokens.append(filtered)
 
         return filtered_tokens
 
-    # @staticmethod
-    # def remove_ed_(word):
-    #     return re.sub(r'ed$', '', word)
 
-    # def remove_ed_suf(self, tokens_list: list):
-    #     stems_tokens = []
+    def spell_correct(self, tokens_list):
+        corrected_tokens = []
 
-    #     for tokens in tokens_list:
-    #         stems_tokens.append([self.remove_ed_(token) for token in tokens])
+        for tokens in tokens_list:
+          corrected_text = []
 
-    #     return stems_tokens
+          for word in tokens:
+            if len(word) <= 2:
+                corrected_text.append(word)
+                continue
+
+            suggestions = self.sym_spell.lookup(
+                word, Verbosity.CLOSEST, max_edit_distance=2
+            )
+  
+            corrected_word = suggestions[0].term if suggestions else word
+
+            corrected_text.append(corrected_word)
 
 
-    def normalize(self, tokens_list):
+          if len(corrected_text) == 0:
+            print("empty corrected text!")
+          corrected_tokens.append(corrected_text)
 
-        normalized_tokens_list = list()
+        return corrected_tokens
+
+
+
+
+    def lemmatize(self, tokens_list):
+
+        lemmatized_tokens_list = list()
 
         for tokens in tokens_list:
             lemmas = list()
@@ -128,10 +160,12 @@ class NLProcessor:
                 wn_tag = self.get_wordnet_pos(tag)
                 lemma = self.normalizer.lemmatize(word, wn_tag)
                 lemmas.append(lemma)
-    
-            normalized_tokens_list.append(lemmas)
+            
+            if len(lemmas) == 0:
+              print("empty lemmas tokens")
+            lemmatized_tokens_list.append(lemmas)
 
-        return normalized_tokens_list
+        return lemmatized_tokens_list
 
 
     def add_padding(self, embedded_tokens):
@@ -146,7 +180,6 @@ class NLProcessor:
             padded_list.append(np.array(embedded_token))
 
         return np.array(padded_list)
-
 
 
     def word2vec_embedding(self, tokens_list):
@@ -174,7 +207,6 @@ class NLProcessor:
         return embedded_tokens
 
 
-
     def transform(self, raw_sentences):
 
         sentences = raw_sentences
@@ -184,15 +216,13 @@ class NLProcessor:
         tokens  = self.tokenization(sentences)
         if self.use_stopwords:
             tokens  = self.filter_stopwords(tokens)
+
+        if self.sym_spell:
+            tokens = self.spell_correct(tokens)
+
         if self.use_normalize:
-            tokens  = self.normalize(tokens)
+            tokens  = self.lemmatize(tokens)
 
-        # if self.remove_ed:
-        #     tokens = self.remove_ed_suf(tokens)
-
-        if self.sub_word_tokenizer:
-            return tokens
-    
 
         embedded_tokens = self.word2vec_embedding(tokens)
         return self.add_padding(embedded_tokens)
